@@ -1,6 +1,9 @@
 <?php
 require_once("../../includes/connectdb.php");
 
+// FIXIT -- Error report is disable as it create problem in response.
+// error_reporting(0);
+
 $response = array();
 $output = "";
 $industry = isset($_POST['ind']) ? $_POST['ind'] : '';
@@ -87,76 +90,79 @@ if ($request_type == 'securitybymarketcap') {
 
 if ($request_type == 'infoLoad') {
 
+    try {
+        //code...
+        $isin_code = $_POST['isin_code'];
 
-    $isin_code = $_POST['isin_code'];
+        $select = $pdo->prepare("SELECT * FROM tbl_nse where ISIN_Code='{$isin_code}'");
 
-    $select = $pdo->prepare("SELECT * FROM tbl_nse where ISIN_Code='{$isin_code}'");
+        $select->execute();
 
-    $select->execute();
+        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            $response['Security_name'] = $row->security_name;
+            $response['Security_symbol'] = $row->symbol;
+            $response['industry'] = $row->industry;
+            $response['market_cap'] = $row->market_cap;
+            $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row->symbol . ".jpg' alt='Security Avatar'>";
 
-        $response['Security_name'] = $row->security_name;
-        $response['Security_symbol'] = $row->symbol;
-        $response['industry'] = $row->industry;
-        $response['market_cap'] = $row->market_cap;
-        $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row->symbol . ".jpg' alt='Security Avatar'>";
+            // <img class="img elevation-2" src="logo/bataindia.jpg" alt="User Avatar">
+        }
 
-        // <img class="img elevation-2" src="logo/bataindia.jpg" alt="User Avatar">
-    }
+        $select = $pdo->prepare("SELECT * FROM tbl_about where ISIN_Code='{$isin_code}'");
 
-    $select = $pdo->prepare("SELECT * FROM tbl_about where ISIN_Code='{$isin_code}'");
+        $select->execute();
 
-    $select->execute();
+        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            $response['Security_Info'] = $row->about_info;
+        }
 
-        $response['Security_Info'] = $row->about_info;
-    }
+        $select = $pdo->prepare("SELECT MAX(cmp_date) as cmp_date FROM tbl_cmp_price where ISIN_Code='{$isin_code}'");
 
-    $select = $pdo->prepare("SELECT MAX(cmp_date) as cmp_date FROM tbl_cmp_price where ISIN_Code='{$isin_code}'");
+        $select->execute();
 
-    $select->execute();
+        $cmp_date_db = NULL;
 
-    $cmp_date_db = NULL;
+        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            $cmp_date_db = $row->cmp_date;
+        }
 
-        $cmp_date_db = $row->cmp_date;
-    }
+        $select = $pdo->prepare("SELECT * FROM tbl_cmp_price where ISIN_Code='{$isin_code}' AND cmp_date='{$cmp_date_db}'");
 
-    $select = $pdo->prepare("SELECT * FROM tbl_cmp_price where ISIN_Code='{$isin_code}' AND cmp_date='{$cmp_date_db}'");
+        $select->execute();
 
-    $select->execute();
+        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-    $cmp_date_db = date_create($cmp_date_db);
-
-    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
-
-        $response['Security_Cmp'] = $row->cmp_close_price;
-        $cmp_date_db = date_format($cmp_date_db, "d/M/Y");
-        $response['last_update'] = "Updated on : " . $cmp_date_db;
+            $response['Security_Cmp'] = $row->cmp_close_price;
+            $cmp_date_db = date_format(date_create($cmp_date_db), "d/M/Y");
+            $response['last_update'] = "Updated on : " . $cmp_date_db;
+        }
+    } catch (PDOException $e) {
+        //throw $th;
+        echo "Fail " . $e->getMessage();
     }
 }
 
-//if($request_type == 'cashcatload'){
-//	$cnt=0;
-//    $select = $pdo->prepare("SELECT distinct(cash_flow_cat) FROM tbl_cashflow");
+if ($request_type == 'cashcatload') {
+    $cnt = 0;
+    $select = $pdo->prepare("SELECT distinct(cash_flow_cat) FROM tbl_cashflow");
 
-//    $select->execute();
+    $select->execute();
 
-//    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
-//        if ($cnt == 0) {
-//            $output =   "<option value='" . $row->cash_flow_cat . "' selected='selected'>" . $row->cash_flow_cat . "</option>";
-//        } else {
-//            $output .=   "<option value='" . $row->cash_flow_cat . "'>" . $row->cash_flow_cat . "</option>";
-//        }
-//        $cnt = $cnt + 1;
-//    }
+    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+        if ($cnt == 0) {
+            $output =   "<option value='" . $row->cash_flow_cat . "' selected='selected'>" . $row->cash_flow_cat . "</option>";
+        } else {
+            $output .=   "<option value='" . $row->cash_flow_cat . "'>" . $row->cash_flow_cat . "</option>";
+        }
+        $cnt = $cnt + 1;
+    }
+    $output .=   "<option value='others'>Others</option>";
 
-
-//    $response['cash_flow_cat'] = $output;
-//}
+    $response['cash_flow_cat'] = $output;
+}
 
 
 echo json_encode($response);

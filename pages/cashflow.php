@@ -212,30 +212,26 @@ error_reporting(E_ERROR | E_PARSE);
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="category">Category</label>
-                                                        <select class="custom-select form-control-border" id="category"
-                                                            name="category">
-                                                            <option value="Food">Food</option>
-                                                            <option value="Cloths">Cloths</option>
-                                                            <option value="Education">Education</option>
-                                                            <option value="Tea">Tea</option>
-                                                            <option value="Refreshment at Office">Refreshment at office
-                                                            </option>
-                                                            <option value="Credit Card Payment">Credit Card Payment
-                                                            </option>
-                                                            <option value="Arihant Maintenance">Arihant Maintenance
-                                                            </option>
-                                                            <option value="Airtel Bill">Airtel Bill</option>
-                                                            <option value="Milk">Milk</option>
-                                                            <option value="Water">Water</option>
-                                                            <option value="Room Rent">Room Rent</option>
-                                                            <option value="Diwali Shopping">Diwali Shopping</option>
-                                                            <option value="DTH Recharge">DTH Recharge</option>
-                                                            <option value="Car Wash">Car Wash</option>
+                                                        <select class="custom-select form-control-border"
+                                                            id="category_id" name="category_id">
+                                                            //Highlight Category is loaded by AJAX Call
+
+
                                                         </select>
                                                     </div>
 
                                                 </div>
 
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6"></div>
+                                                <div class="col-md-6">
+                                                    <!-- //Highlight Dynamic textbox added. -->
+                                                    <div class="form-group" id="other_cat_place">
+
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="row">
@@ -285,11 +281,13 @@ error_reporting(E_ERROR | E_PARSE);
                                                 try {
                                                     //code...
                                                     $in_amt = $_POST['cashout'];
-                                                    $in_cat = $_POST['category'];
+                                                    $in_cat = ($_POST['category_id'] == 'others') ? $_POST['other_cat'] : $_POST['category_id'];
                                                     $in_date = date("Y-m-d", strtotime($_POST['outflow_rec_date']));
                                                     $in_remark = $_POST['out_tranremarks'];
 
                                                     $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('OutFlow','{$in_amt}','{$in_cat}','{$in_date}','{$in_remark}')";
+
+                                                    // echo $sql;
 
                                                     $insert_sql = $pdo->prepare($sql);
 

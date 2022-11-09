@@ -1,14 +1,13 @@
 // alert("working.. Inclueded successfuly");
 
-window.onload = loadData;
+// window.onload = loadData;
 
-//$(document).ready(Function(){
-//	loadData();
-//});
+$(document).ready(function () {
+    loadData();
+});
 
 //Highlight Industry, Market Cap Load
 function loadData() {
-
     $.ajax({
         url: "pages/ajax/securityAjaxCtrl.php",
         type: "post",
@@ -25,6 +24,7 @@ function loadData() {
         }
 
     })
+
 
 }
 
@@ -70,16 +70,18 @@ $('#ind_sel').on('change', function () {
 })
 
 
-$('#marketcap_sel').on('change', function () {
-    var marketcap = $(this).val();
+$(document).ready(function () {
+    $('#marketcap_sel').on('change', function () {
+        var marketcap = $(this).val();
 
-    var industry = $('#ind_sel').val();
+        var industry = $('#ind_sel').val();
 
-    // console.log(marketcap + industry);
+        // console.log(marketcap + industry);
 
-    securitybymarketcap(industry, marketcap);
+        securitybymarketcap(industry, marketcap);
 
-})
+    });
+});
 
 function securitybymarketcap(industry, marketcap) {
 
@@ -102,18 +104,19 @@ function securitybymarketcap(industry, marketcap) {
 
 // Highlight Security List on change secuirty info load
 
-$('#sec_sel').on('change', function () {
 
-    var securityname = $(this).val();
-    var industry = $('#ind_sel').val();
+$(document).ready(function () {
+    $('#sec_sel').on('change', function () {
 
-    // console.log(securityname + " belongs to " + industry);
+        var securityname = $(this).val();
+        var industry = $('#ind_sel').val();
 
-    securityInfoLoad(industry, securityname);
+        // console.log(securityname + " belongs to " + industry);
 
+        securityInfoLoad(industry, securityname);
 
-})
-
+    });
+});
 
 function securityInfoLoad(industry, securityname) {
 
@@ -146,6 +149,31 @@ function securityInfoLoad(industry, securityname) {
 }
 
 
+$(document).ready(function () {
+
+    // INFO Loading Default values.
+
+    load_cash_cat();
+
+    $('#category_id').on('change', function () {
+        // adding field for other 
+        var other_code = $(this).val();
+
+        if (other_code == "others") {
+            // console.log("Textbox added");
+
+            $("#other_cat_place").html(' <label for="other_cat" id="other_cat_label">Other Category</label> <input type="text" class="form-control form-control-border" id="other_cat" name="other_cat" placeholder = "Please add other category." required>');
+        } else {
+            $("#other_cat").remove();
+            $("#other_cat_label").remove();
+        }
+
+
+    });
+
+
+});
+
 //Cash Flow Category Load
 //$(document).ready(function() {
 //	$('#tab_change').on('focus', function () {
@@ -153,19 +181,18 @@ function securityInfoLoad(industry, securityname) {
 //	})
 //});
 
-//function load_cash_cat(){
-//	$.ajax({
-//        url: "pages/ajax/securityAjaxCtrl.php",
-//        type: "post",
-//        data: {
-//            requestType: 'cashcatload'
-//        },
-        // dataType: "json",
-//        contentType: "application/x-www-form-urlencoded",
-//        success: function (result) {
-//            var response = JSON.parse(result);
-//            $("#Secuirty_Title").html(response.cash_flow_cat);
-//            
-//        }
-//    })
-//}
+function load_cash_cat() {
+    $.ajax({
+        url: "pages/ajax/securityAjaxCtrl.php",
+        type: "post",
+        data: {
+            requestType: 'cashcatload'
+        },
+        contentType: "application/x-www-form-urlencoded",
+        success: function (result) {
+            var response = JSON.parse(result);
+            $("#category_id").html(response.cash_flow_cat);
+
+        }
+    })
+};
