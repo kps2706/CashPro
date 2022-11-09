@@ -1,0 +1,41 @@
+<html>
+
+            <head>
+                <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800;900&display=swap' rel='stylesheet'>
+                <style>
+                *{margin:0;padding:0}body{font-family:poppins}h3{padding:48px;text-align:right}.greet{margin-bottom:40px}.message,.regard{margin-bottom:32px}#testimonials{text-align:left;padding:48px;border:solid #9e9e9e;margin:32px;box-shadow:5px 10px #0000ff1c}.logo{font-size:32px;padding-bottom:0;box-shadow:5px 10px;color:#00f}
+                </style>
+            
+            </head>
+            
+            <body>
+            
+                <h3 class='logo'>CASHPRO</h3>
+            
+                <section id='testimonials'>
+                    <h4 class='greet'>Dear Pushpinder Kaur</h4>
+            
+                    <p class='message'>Thanks for your registration.</p>
+            
+                    <p class='message'><strong>OTM5NTc3</strong> is the OTP for your Cash Pro :: Financial System Management. Please
+                        do not share this OTP with anyone for security reasons.</p>
+            
+                    <div class='message'>
+            
+                        <p class='message'>Please click on below link to active your account.</p>
+            
+                        <a href='http://192.168.1.6/cashpro/activationpage.php?activation_code=OTM5NTc3&email=cHVzaGJhaGlhMjlAZ21haWwuY29t&username=cHVzaGJhaGlhMjk=&status=MA=='>http://localhost/cashpro/activationpage.php?activation_code=OTM5NTc3&email=cHVzaGJhaGlhMjlAZ21haWwuY29t&username=cHVzaGJhaGlhMjk=&status=MA==</a>
+            
+                    </div>
+            
+            
+                    <h4 class='regard'>Warms Regards,</h4>
+            
+                    <h4 class='regard_l'>Cash Pro Team</h4>
+            
+                    </h1>
+            
+                </section>
+            </body>
+            
+            </html>

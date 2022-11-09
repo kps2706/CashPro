@@ -1,0 +1,22 @@
+//Cron Job
+1. create cron job to automatically update cmp from bhavcopy.
+2. 
+
+
+
+1. Password reset functionality with activation link on mail.
+2. User ip address should automatically fetched.
+3. Password lock functionality after 3 invalid attempt with colling period of 2 hours.
+4. Account disable/Delete functionality from Dashboard profile.
+5. Dashboard creation for User and admin.
+6. Account reactivation functionality.
+7. Login Remember me functionality.
+8. Automatically account deactivation after un-use for 15 days.
+9. Lock screen concept on windows short cut.
+10.Referal Code concept implentation for registration.
+11.Welcome Message for User on Login.
+12.reCapcha on Login (Image and Code google api)
+13. password history maintanance for last 3 password.
+14. Voice base login
+15. Bird eye view of menu on click // With password.
+16. Custome SQL controller. 

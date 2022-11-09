@@ -1,0 +1,7 @@
+SweetAlert2 : under Modals & Alerts new
+Button setup : Primary and outline
+Toasts : can use some where for alerts
+bs-stepper:  for wizards of action [Advanced Form]
+Bootstrap Switch : [Advanced Form]
+Validation : jQuery validation
+Registration >> Email for ID activation and activation code.
