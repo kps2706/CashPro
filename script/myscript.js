@@ -37,14 +37,14 @@ $(document).ready(function () {
 
     // });
 
-    $(".small-box").mouseover(function () {
-        $(this).addClass("elevation-5");
-        $(this).removeClass("elevation-2");
-    })
-    $(".small-box").mouseout(function () {
-        $(this).addClass("elevation-2");
-        $(this).removeClass("elevation-5");
-    })
+    // $(".small-box").mouseover(function () {
+    //     $(this).addClass("elevation-5");
+    //     $(this).removeClass("elevation-2");
+    // })
+    // $(".small-box").mouseout(function () {
+    //     $(this).addClass("elevation-2");
+    //     $(this).removeClass("elevation-5");
+    // })
 
     //Date picker
     $('#inflowdate').datetimepicker({

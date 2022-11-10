@@ -66,7 +66,7 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info elevation-2" data-aos="fade-up">
+                    <div class="small-box bg-info" data-aos="fade-up">
                         <div class="inner">
                             <h3>
 
@@ -103,7 +103,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-success elevation-2" data-aos="fade-up" data-aos-delay="150">
+                    <div class="small-box bg-success" data-aos="fade-up" data-aos-delay="150">
                         <div class="inner">
                             <h3>53<sup style="font-size: 20px">%</sup></h3>
 
@@ -118,7 +118,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-warning elevation-2" . data-aos="fade-up" data-aos-delay="300">
+                    <div class="small-box bg-warning" . data-aos="fade-up" data-aos-delay="300">
                         <div class="inner">
                             <h3>44</h3>
 
@@ -133,7 +133,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-danger elevation-2" data-aos="fade-up" data-aos-delay="450">
+                    <div class="small-box bg-danger" data-aos="fade-up" data-aos-delay="450">
                         <div class="inner">
                             <h3>65</h3>
 
