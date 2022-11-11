@@ -60,15 +60,11 @@ error_reporting(E_ERROR | E_PARSE);
                             <div class="card-header p-0 border-bottom-0">
                                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill"
-                                            href="#custom-tabs-four-cashout" role="tab"
-                                            aria-controls="custom-tabs-four-cashout" aria-selected="true">Cash
+                                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-cashout" role="tab" aria-controls="custom-tabs-four-cashout" aria-selected="true">Cash
                                             Inflows</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
-                                            href="#custom-tabs-four-profile" role="tab"
-                                            aria-controls="custom-tabs-four-profile" aria-selected="false">Cash
+                                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Cash
                                             Outflows</a>
                                     </li>
 
@@ -77,8 +73,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <!-- tab content stat here -->
                             <div class="card-body">
                                 <div class="tab-content" id="custom-tabs-four-tabContent">
-                                    <div class="tab-pane fade show active" id="custom-tabs-four-cashout" role="tabpanel"
-                                        aria-labelledby="custom-tabs-four-home-tab">
+                                    <div class="tab-pane fade show active" id="custom-tabs-four-cashout" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
 
                                         <!-- Cash inflow form -->
                                         <form action="" method="post" class="cash_inflow">
@@ -87,17 +82,14 @@ error_reporting(E_ERROR | E_PARSE);
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="cashout">Cash Inflow</label>
-                                                        <input type="text" class="form-control form-control-border"
-                                                            id="cashin" name="cashin" placeholder="Please enter amount."
-                                                            required>
+                                                        <input type="text" class="form-control form-control-border" id="cashin" name="cashin" placeholder="Please enter amount." required>
                                                     </div>
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="category">Category</label>
-                                                        <select class="custom-select form-control-border" id="category"
-                                                            name="category">
+                                                        <select class="custom-select form-control-border" id="category" name="category">
                                                             <option value="Salary">Salary</option>
                                                             <option value="Petrol">Petrol</option>
                                                             <option value="Rent">Rent</option>
@@ -116,15 +108,10 @@ error_reporting(E_ERROR | E_PARSE);
                                                     <!--Cash inflow Section -->
                                                     <div class="form-group ">
                                                         <label>Date:</label>
-                                                        <div class="input-group date" id="inflowdate"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#inflowdate" name="inflow_rec_date"
-                                                                required />
-                                                            <div class="input-group-append" data-target="#inflowdate"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i>
+                                                        <div class="input-group date" id="inflowdate" data-target-input="nearest">
+                                                            <input type="text" class="form-control datetimepicker-input" data-target="#inflowdate" name="inflow_rec_date" required />
+                                                            <div class="input-group-append" data-target="#inflowdate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -135,9 +122,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                                     <div class="form-group">
                                                         <label for="cashout">Tran. Remarks</label>
-                                                        <input type="text" class="form-control form-control-border"
-                                                            id="in_tranremarks" name="in_tranremarks"
-                                                            placeholder="Please enter Tran Remarks." required>
+                                                        <input type="text" class="form-control form-control-border" id="in_tranremarks" name="in_tranremarks" placeholder="Please enter Tran Remarks." required>
                                                     </div>
 
 
@@ -146,8 +131,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="form-control btn btn-primary"
-                                                            name="btn_inflow" value="submit">Submit</button>
+                                                        <button type="submit" class="form-control btn btn-primary" name="btn_inflow" value="submit">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,26 +178,22 @@ error_reporting(E_ERROR | E_PARSE);
 
 
                                     <!-- second tab start here  -->
-                                    <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
-                                        aria-labelledby="custom-tabs-four-profile-tab">
+                                    <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
 
-                                        <form action="" method="post" class="cash_outflow">
+                                        <form class="cash_outflow" id="form_cashout">
                                             <div class="row">
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="cashout">Cash Outflow</label>
-                                                        <input type="text" class="form-control form-control-border"
-                                                            id="cashout" name="cashout"
-                                                            placeholder="Please enter amount." required>
+                                                        <input type="text" class="form-control form-control-border" id="cashout" name="cashout" placeholder="Please enter amount." required>
                                                     </div>
 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="category">Category</label>
-                                                        <select class="custom-select form-control-border"
-                                                            id="category_id" name="category_id">
+                                                        <select class="custom-select form-control-border" id="category_id" name="category_id">
                                                             //Highlight Category is loaded by AJAX Call
 
 
@@ -240,15 +220,10 @@ error_reporting(E_ERROR | E_PARSE);
 
                                                     <div class="form-group">
                                                         <label>Date:</label>
-                                                        <div class="input-group date" id="outflowdate"
-                                                            data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input"
-                                                                data-target="#outflowdate" name="outflow_rec_date"
-                                                                required />
-                                                            <div class="input-group-append" data-target="#outflowdate"
-                                                                data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i
-                                                                        class="fa fa-calendar"></i>
+                                                        <div class="input-group date" id="outflowdate" data-target-input="nearest">
+                                                            <input type="text" class="form-control datetimepicker-input" data-target="#outflowdate" id="outflow_rec_date" name="outflow_rec_date" data-date-format='yyyy-mm-dd' required />
+                                                            <div class="input-group-append" data-target="#outflowdate" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -258,17 +233,14 @@ error_reporting(E_ERROR | E_PARSE);
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="cashout">Tran. Remarks</label>
-                                                        <input type="text" class="form-control form-control-border"
-                                                            id="out_tranremarks" name="out_tranremarks"
-                                                            placeholder="Please enter Tran Remarks." required>
+                                                        <input type="text" class="form-control form-control-border" id="out_tranremarks" name="out_tranremarks" placeholder="Please enter Tran Remarks." required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <button type="submit" class="form-control btn btn-primary"
-                                                            name="btn_outflow" value="submit">Submit</button>
+                                                        <button type="submit" class="form-control btn btn-primary" name="btn_outflow" id="btn_outflow" value="submit">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -323,8 +295,7 @@ error_reporting(E_ERROR | E_PARSE);
                             </div>
                             <div class="card-body">
 
-                                <canvas id="donutChart"
-                                    style="min-height: 218px; height: 250px; max-height: 218px; max-width: 100%;">
+                                <canvas id="donutChart" style="min-height: 218px; height: 250px; max-height: 218px; max-width: 100%;">
                                 </canvas>
 
                             </div>

@@ -1,7 +1,4 @@
-$('.toastrDefaultSuccess').click(function () {
-    toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-});
-
+// info animation initialize
 AOS.init({
     duration: 1000
 });
@@ -13,7 +10,6 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-
     $("#btn_submit").click(function () {
         // alert($("#exampleInputEmail1").val());
 
@@ -24,29 +20,9 @@ $(document).ready(function () {
         }
     });
 
-    // $(".form-control").blur(function () {
-    //     // alert($(this).val());
 
-    //     if ($(this).val() == "") {
-    //         $(this).addClass("is-invalid");
-    //         $(this).removeClass("is-valid");
-    //     } else {
-    //         $(this).addClass("is-valid");
-    //         $(this).removeClass("is-invalid");
-    //     }
+    //info Date picker
 
-    // });
-
-    // $(".small-box").mouseover(function () {
-    //     $(this).addClass("elevation-5");
-    //     $(this).removeClass("elevation-2");
-    // })
-    // $(".small-box").mouseout(function () {
-    //     $(this).addClass("elevation-2");
-    //     $(this).removeClass("elevation-5");
-    // })
-
-    //Date picker
     $('#inflowdate').datetimepicker({
         format: 'DD-MM-YYYY'
     });
@@ -54,12 +30,11 @@ $(document).ready(function () {
         format: 'DD-MM-YYYY'
     });
 
-
-
+    // info select 2 initialize 
 
     $('.select2').select2();
 
-    // Login form Validation
+    // Info Login form Validation
 
     $('#login_form').validate({
         rules: {
@@ -92,7 +67,8 @@ $(document).ready(function () {
     });
 
 
-    // forget password validation form
+    //Info  forget password validation form
+
     $('#forget_pass_form').validate({
         rules: {
             useremail: {
@@ -120,7 +96,7 @@ $(document).ready(function () {
     });
 
 
-    // Registration form validation
+    //Info Registration form validation
 
     $('#registration_form').validate({
         rules: {
@@ -179,17 +155,3 @@ $(document).ready(function () {
 
 
 
-// $(document).ready(function () {
-//     var Toast = Swal.mixin({
-//         toast: false,
-//         position: 'top-end',
-//         showConfirmButton: false,
-//         timer: 30000
-//     });
-
-//     Toast.fire({
-//         'Good job!',
-//         'You clicked the button!',
-//         'success'
-//     })
-// });

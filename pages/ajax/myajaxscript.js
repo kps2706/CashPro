@@ -174,12 +174,7 @@ $(document).ready(function () {
 
 });
 
-//Cash Flow Category Load
-//$(document).ready(function() {
-//	$('#tab_change').on('focus', function () {
-//	load_cash_cat();
-//	})
-//});
+// info cashout category load from DB
 
 function load_cash_cat() {
     $.ajax({
@@ -196,3 +191,65 @@ function load_cash_cat() {
         }
     })
 };
+
+
+// Info CashFlow :: Outflow data insert to DB
+
+$(document).ready(function () {
+
+    $("#btn_outflow").on("click", function (e) {
+        e.preventDefault();
+
+        var Toast = Swal.mixin({
+            toast: false,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 30000
+        });
+
+        var outamt = $("#cashout").val();
+        if ($("#category_id").val() == "others") {
+            var temp_cat = $("#other_cat").val();
+        } else {
+            var temp_cat = $("#category_id").val();
+        }
+        var recordDate = $("#outflow_rec_date").val();
+        var outremarks = $("#out_tranremarks").val();
+
+        $.ajax({
+            type: "post",
+            url: "pages/ajax/cashflowAjaxCtrl.php",
+            data: "data",
+            data: {
+                requestType: 'cashRecordInsert',
+                o_amt: outamt,
+                o_cat: temp_cat,
+                o_rec_date: recordDate,
+                o_remark: outremarks
+            },
+            success: function (response) {
+                console.log(response);
+
+                if (response == 1) {
+                    Toast.fire({
+                        "Good job!",
+                        "You clicked the button!",
+                        "success"
+                    });
+                } else {
+                    Toast.fire({
+                        "Good job!",
+                        "You clicked the button!",
+                        "warning"
+                    });
+                }
+
+            }
+        });
+
+
+
+    });
+
+
+});

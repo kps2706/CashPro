@@ -38,9 +38,7 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h1 class="display-4" data-aos="fade-up">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-activity">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity">
                             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                         </svg>
                         Dashboard
@@ -96,8 +94,7 @@ error_reporting(E_ERROR | E_PARSE);
                         <div class="icon">
                             <i class="ion ion-cash"></i>
                         </div>
-                        <a href="cashflow" class="small-box-footer">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        <a href="cashflow" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
