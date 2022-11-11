@@ -55,16 +55,20 @@ error_reporting(E_ERROR | E_PARSE);
 
                 <div class="row">
                     <!-- Tab Starts -->
-                    <div class="col-md-6 col-12">
+                    <div class="col-sm-12 col-lg-4">
                         <div class="card card-primary card-outline card-outline-tabs ">
                             <div class="card-header p-0 border-bottom-0">
                                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-cashout" role="tab" aria-controls="custom-tabs-four-cashout" aria-selected="true">Cash
+                                        <a class="nav-link active" id="Cash_Inflow-tab" data-toggle="pill"
+                                            href="#custom-tabs-four-cashout" role="tab"
+                                            aria-controls="custom-tabs-four-cashout" aria-selected="true">Cash
                                             Inflows</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Cash
+                                        <a class="nav-link" id="Cash_OutFlow-tab" data-toggle="pill"
+                                            href="#Cash_OutFlow" role="tab" aria-controls="Cash_OutFlow"
+                                            aria-selected="false">Cash
                                             Outflows</a>
                                     </li>
 
@@ -73,206 +77,132 @@ error_reporting(E_ERROR | E_PARSE);
                             <!-- tab content stat here -->
                             <div class="card-body">
                                 <div class="tab-content" id="custom-tabs-four-tabContent">
-                                    <div class="tab-pane fade show active" id="custom-tabs-four-cashout" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                                    <div class="tab-pane fade show active" id="custom-tabs-four-cashout" role="tabpanel"
+                                        aria-labelledby="Cash_Inflow-tab">
 
-                                        <!-- Cash inflow form -->
-                                        <form action="" method="post" class="cash_inflow">
-                                            <div class="row">
+                                        <!--//info Cash inflow form -->
+                                        <form class="form_cashin" id="form_cashin">
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="cashout">Cash Inflow</label>
-                                                        <input type="text" class="form-control form-control-border" id="cashin" name="cashin" placeholder="Please enter amount." required>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="cashin">Cash Inflow</label>
+                                                <input type="text"
+                                                    class="form-control form-control-border border-width-2" id="cashin"
+                                                    name="cashin" placeholder="Please enter amount." required>
+                                            </div>
 
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="category">Category</label>
-                                                        <select class="custom-select form-control-border" id="category" name="category">
-                                                            <option value="Salary">Salary</option>
-                                                            <option value="Petrol">Petrol</option>
-                                                            <option value="Rent">Rent</option>
-                                                            <option value="Wife Salary">Wife Salary</option>
-                                                            <option value="Other Income">Other Income</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="category">Category</label>
+                                                <select class="custom-select form-control-border border-width-2"
+                                                    id="in_category_id" name="in_category_id">
 
-                                                </div>
+                                                </select>
+                                            </div>
+
+                                            <!-- //Highlight Dynamic textbox added. -->
+                                            <div class="form-group" id="other_cat_in_place">
 
                                             </div>
 
-                                            <div class="row">
+                                            <!--//info Cash inflow Section -->
 
-                                                <div class="col-md-6">
-                                                    <!--Cash inflow Section -->
-                                                    <div class="form-group ">
-                                                        <label>Date:</label>
-                                                        <div class="input-group date" id="inflowdate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" data-target="#inflowdate" name="inflow_rec_date" required />
-                                                            <div class="input-group-append" data-target="#inflowdate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                                </div>
-                                                            </div>
+                                            <div class="form-group">
+                                                <label>Date:</label>
+                                                <div class="input-group date" id="inflowdate"
+                                                    data-target-input="nearest">
+                                                    <input type="text"
+                                                        class="form-control-border datetimepicker-input border-width-2"
+                                                        data-target="#inflowdate" name="inflow_rec_date"
+                                                        id="inflow_rec_date" required />
+                                                    <div class="input-group-append" data-target="#inflowdate"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label for="cashout">Tran. Remarks</label>
-                                                        <input type="text" class="form-control form-control-border" id="in_tranremarks" name="in_tranremarks" placeholder="Please enter Tran Remarks." required>
-                                                    </div>
-
-
-                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="form-control btn btn-primary" name="btn_inflow" value="submit">Submit</button>
-                                                    </div>
-                                                </div>
+
+                                            <div class="form-group">
+                                                <label for="cashout">Tran. Remarks</label>
+                                                <input type="text"
+                                                    class="form-control form-control-border border-width-2"
+                                                    id="in_tranremarks" name="in_tranremarks"
+                                                    placeholder="Please enter Tran Remarks." required>
                                             </div>
 
 
-                                            <?php
-
-                                            // Fixit Cash Inflow Section
-
-                                            if (isset($_POST['btn_inflow'])) {
-                                                # code...
-
-                                                // echo 'first';
-                                                try {
-                                                    //code...
-                                                    // $_SESSION['form_submit'] = 'true';
-
-                                                    $out_amt = $_POST['cashin'];
-                                                    $out_cat = $_POST['category'];
-                                                    $out_date = date("Y-m-d", strtotime($_POST['inflow_rec_date']));
-                                                    $out_remarks = $_POST['in_tranremarks'];
-
-                                                    $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES
-                                                        ('Inflow','{$out_amt}','{$out_cat}','{$out_date}','{$out_remarks}')";
-
-                                                    $record = $pdo->prepare($sql);
-
-                                                    $record->execute();
-
-                                                    unset($sql);
-                                                } catch (PDOException $e) {
-                                                    //throw $th;
-                                                    die("ERROR: could not able to execute $sql " . $e->getMessage());
-                                                }
-                                            }
-                                            // var_dump($_POST);
+                                            <div class="form-group">
+                                                <button type="submit" class="form-control btn btn-primary"
+                                                    name="btn_inflow" id="btn_inflow" value="submit">Submit</button>
+                                            </div>
 
 
-                                            ?>
 
                                         </form>
                                     </div>
 
 
 
-                                    <!-- second tab start here  -->
-                                    <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                                    <!-- //info second tab start here  -->
+
+                                    <div class="tab-pane fade" id="Cash_OutFlow" role="tabpanel"
+                                        aria-labelledby="Cash_OutFlow-tab">
 
                                         <form class="cash_outflow" id="form_cashout">
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="cashout">Cash Outflow</label>
-                                                        <input type="text" class="form-control form-control-border" id="cashout" name="cashout" placeholder="Please enter amount." required>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="category">Category</label>
-                                                        <select class="custom-select form-control-border" id="category_id" name="category_id">
-                                                            //Highlight Category is loaded by AJAX Call
 
 
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="cashout">Cash Outflow</label>
+                                                <input type="text"
+                                                    class="form-control form-control-border border-width-2" id="cashout"
+                                                    name="cashout" placeholder="Please enter amount." required>
+                                            </div>
 
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="category">Category</label>
+                                                <select class="custom-select form-control-border border-width-2"
+                                                    id="out_category_id" name="out_category_id">
+                                                    //Highlight Category is loaded by AJAX Call
+
+
+                                                </select>
+                                            </div>
+
+                                            <!-- //Highlight Dynamic textbox added. -->
+                                            <div class="form-group" id="other_cat_out_place">
 
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-md-6"></div>
-                                                <div class="col-md-6">
-                                                    <!-- //Highlight Dynamic textbox added. -->
-                                                    <div class="form-group" id="other_cat_place">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group">
-                                                        <label>Date:</label>
-                                                        <div class="input-group date" id="outflowdate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" data-target="#outflowdate" id="outflow_rec_date" name="outflow_rec_date" data-date-format='yyyy-mm-dd' required />
-                                                            <div class="input-group-append" data-target="#outflowdate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i>
-                                                                </div>
-                                                            </div>
+                                            <div class="form-group">
+                                                <label>Date:</label>
+                                                <div class="input-group date" id="outflowdate"
+                                                    data-target-input="nearest">
+                                                    <input type="text"
+                                                        class="form-control-border datetimepicker-input border-width-2"
+                                                        data-target="#outflowdate" id="outflow_rec_date"
+                                                        name="outflow_rec_date" data-date-format='yyyy-mm-dd'
+                                                        required />
+                                                    <div class="input-group-append" data-target="#outflowdate"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="cashout">Tran. Remarks</label>
-                                                        <input type="text" class="form-control form-control-border" id="out_tranremarks" name="out_tranremarks" placeholder="Please enter Tran Remarks." required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="form-control btn btn-primary" name="btn_outflow" id="btn_outflow" value="submit">Submit</button>
-                                                    </div>
-                                                </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="cashout">Tran. Remarks</label>
+                                                <input type="text"
+                                                    class="form-control form-control-border border-width-2"
+                                                    id="out_tranremarks" name="out_tranremarks"
+                                                    placeholder="Please enter Tran Remarks." required>
+                                            </div>
 
-                                            <?php
-                                            // Fixit Cash outflow section
-                                            if (isset($_POST['btn_outflow'])) {
-
-                                                try {
-                                                    //code...
-                                                    $in_amt = $_POST['cashout'];
-                                                    $in_cat = ($_POST['category_id'] == 'others') ? $_POST['other_cat'] : $_POST['category_id'];
-                                                    $in_date = date("Y-m-d", strtotime($_POST['outflow_rec_date']));
-                                                    $in_remark = $_POST['out_tranremarks'];
-
-                                                    $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('OutFlow','{$in_amt}','{$in_cat}','{$in_date}','{$in_remark}')";
-
-                                                    // echo $sql;
-
-                                                    $insert_sql = $pdo->prepare($sql);
-
-                                                    $insert_sql->execute();
-                                                } catch (PDOException $e) {
-                                                    //throw $th;
-                                                    die("ERROR: could not able to execute $sql " . $e->getMessage());
-                                                }
-                                            }
+                                            <div class="form-group">
+                                                <button type="submit" class="form-control btn btn-primary"
+                                                    name="btn_outflow" id="btn_outflow" value="submit">Submit</button>
+                                            </div>
 
 
-
-                                            ?>
 
                                         </form>
 
@@ -285,30 +215,17 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-12">
-                        <!-- DONUT CHART -->
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">Cash Position</h3>
+                    <div class="col-sm-12 col-lg-8">
+                        <div id='tableContainer'>
 
 
-                            </div>
-                            <div class="card-body">
-
-                                <canvas id="donutChart" style="min-height: 218px; height: 250px; max-height: 218px; max-width: 100%;">
-                                </canvas>
-
-                            </div>
-                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
-                    </div>
 
+                    </div>
+                    <!-- /.card-body-->
                 </div>
-                <!-- /.card-body-->
             </div>
         </div>
-    </div>
-    <!-- </div> -->
+        <!-- </div> -->
 
-</div>
+    </div>

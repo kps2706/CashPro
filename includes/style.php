@@ -10,7 +10,7 @@
  <!-- Theme style -->
  <link rel="stylesheet" href="dist/css/adminlte.min.css">
  <!-- SweetAlert2 -->
- <!-- <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
+ <link rel="stylesheet" href="/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
  <!-- Tempusdominus Bootstrap 4 -->
  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -29,5 +29,9 @@
  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
  <!-- Animation Style -->
  <link href="dist/css/aos.css" rel="stylesheet">
+
+ <!-- Datatable -->
+ <link rel="stylesheet" href="dist/css/jquery.dataTables.min.css">
+
  <!-- mystyle sheet -->
  <link rel="stylesheet" href="dist/css/mystyle.css">

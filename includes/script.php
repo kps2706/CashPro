@@ -13,15 +13,12 @@
      <!-- AdminLTE App -->
      <script src="dist/js/adminlte.min.js"></script>
      <!-- SweetAlert2 -->
-     <!-- <script src="plugins/sweetalert2/sweetalert2.min.js"></script> -->
+     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
      <!-- Select2 -->
      <script src="plugins/select2/js/select2.min.js"></script>
      <!-- BS-Stepper -->
      <script src="plugins/bs-stepper/js/bs-stepper.min.js"></script>
-
-     <!-- SweetAlert -->
-     <script src="plugins/sweetalert/sweetalert.min.js"></script>
 
      <!-- Toastr -->
      <script src="plugins/toastr/toastr.min.js"></script>
@@ -36,6 +33,9 @@
 
      <!-- Animation Script -->
      <script src="dist/js/aos.js"></script>
+
+     <!-- Datatable -->
+     <script src="dist/js/jquery.dataTables.min.js"></script>
 
      <!-- My Script file -->
      <script src="script/myscript.js"></script>

@@ -153,21 +153,51 @@ $(document).ready(function () {
 
     // INFO Loading Default values.
 
-    load_cash_cat();
+    load_cash_cat("inflow"); // Loading first time data without click
+    load_cashflow_data();
 
-    $('#category_id').on('change', function () {
+    // onSelect
+
+    $("#Cash_OutFlow-tab").click(function () {
+        load_cash_cat("outFlow");
+        $("#other_cat_out").remove();
+        $("#other_cat_label").remove();
+    });
+    $("#Cash_Inflow-tab").click(function () {
+        load_cash_cat("inflow");
+        $("#other_cat_in").remove();
+        $("#other_cat_label").remove();
+    });
+
+    // info other textfield add in cashout category
+
+    $('#out_category_id').on('change', function () {
         // adding field for other 
         var other_code = $(this).val();
 
         if (other_code == "others") {
             // console.log("Textbox added");
 
-            $("#other_cat_place").html(' <label for="other_cat" id="other_cat_label">Other Category</label> <input type="text" class="form-control form-control-border" id="other_cat" name="other_cat" placeholder = "Please add other category." required>');
+            $("#other_cat_out_place").html(' <label for="other_cat" id="other_cat_label">Other Category</label> <input type="text" class="form-control form-control-border border-width-2" id="other_cat_out" name="other_cat_out" placeholder = "Please add other category." required>');
         } else {
-            $("#other_cat").remove();
+            $("#other_cat_out").remove();
             $("#other_cat_label").remove();
         }
 
+    });
+    // info other textfield add in cashin category
+    $('#in_category_id').on('change', function () {
+        // adding field for other 
+        var other_code = $(this).val();
+
+        if (other_code == "others") {
+            // console.log("Textbox added");
+
+            $("#other_cat_in_place").html(' <label for="other_cat" id="other_cat_label">Other Category</label> <input type="text" class="form-control form-control-border border-width-2" id="other_cat_in" name="other_cat_in" placeholder = "Please add other category." required>');
+        } else {
+            $("#other_cat_in").remove();
+            $("#other_cat_label").remove();
+        }
 
     });
 
@@ -176,42 +206,59 @@ $(document).ready(function () {
 
 // info cashout category load from DB
 
-function load_cash_cat() {
+function load_cash_cat(flowType) {
     $.ajax({
-        url: "pages/ajax/securityAjaxCtrl.php",
+        url: "pages/ajax/cashflowAjaxCtrl.php",
         type: "post",
         data: {
-            requestType: 'cashcatload'
+            requestType: 'cashcatload',
+            dataType: flowType
         },
-        contentType: "application/x-www-form-urlencoded",
         success: function (result) {
             var response = JSON.parse(result);
-            $("#category_id").html(response.cash_flow_cat);
+            if (flowType == "outFlow") {
+                $("#out_category_id").html(response.cash_flow_cat);
+
+            } else {
+                $("#in_category_id").html(response.cash_flow_cat);
+            }
 
         }
     })
 };
 
+function load_cashflow_data() {
+    $.ajax({
+        type: "post",
+        url: "pages/ajax/cashflowAjaxCtrl.php",
+        data: {
+            requestType: 'loadcashtable'
+        },
+        success: function (result) {
+            var response = JSON.parse(result);
+            $("#tableContainer").html(response.cashflow_table);
+            $("#table_id").DataTable({
+                "destroy": true, //use for reinitialize datatable
+            });
+        }
+    });
+};
+
 
 // Info CashFlow :: Outflow data insert to DB
+
+
 
 $(document).ready(function () {
 
     $("#btn_outflow").on("click", function (e) {
         e.preventDefault();
 
-        var Toast = Swal.mixin({
-            toast: false,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 30000
-        });
-
         var outamt = $("#cashout").val();
-        if ($("#category_id").val() == "others") {
-            var temp_cat = $("#other_cat").val();
+        if ($("#out_category_id").val() == "others") {
+            var temp_cat = $("#other_cat_out").val();
         } else {
-            var temp_cat = $("#category_id").val();
+            var temp_cat = $("#out_category_id").val();
         }
         var recordDate = $("#outflow_rec_date").val();
         var outremarks = $("#out_tranremarks").val();
@@ -222,26 +269,65 @@ $(document).ready(function () {
             data: "data",
             data: {
                 requestType: 'cashRecordInsert',
+                flow_type: 'outFlow',
                 o_amt: outamt,
                 o_cat: temp_cat,
                 o_rec_date: recordDate,
                 o_remark: outremarks
             },
-            success: function (response) {
-                console.log(response);
-
-                if (response == 1) {
-                    Toast.fire({
-                        "Good job!",
-                        "You clicked the button!",
-                        "success"
-                    });
+            success: function (result) {
+                var response = JSON.parse(result);
+                if (response.status == 1) {
+                    toastr.success('Record Successfully Inserted', "Success");
+                    load_cashflow_data();
+                    $("#form_cashout").trigger('reset');
                 } else {
-                    Toast.fire({
-                        "Good job!",
-                        "You clicked the button!",
-                        "warning"
-                    });
+                    toastr.error('Record Insertion Failed', "Error");
+                    load_cashflow_data();
+                }
+
+            }
+        });
+
+
+
+    });
+
+
+    $("#btn_inflow").on("click", function (e) {
+        e.preventDefault();
+
+        var outamt = $("#cashin").val();
+        if ($("#in_category_id").val() == "others") {
+            var temp_cat = $("#other_cat_in").val();
+        } else {
+            var temp_cat = $("#in_category_id").val();
+        }
+        var recordDate = $("#inflow_rec_date").val();
+        var outremarks = $("#in_tranremarks").val();
+
+        $.ajax({
+            type: "post",
+            url: "pages/ajax/cashflowAjaxCtrl.php",
+            data: "data",
+            data: {
+                requestType: 'cashRecordInsert',
+                flow_type: 'inFlow',
+                o_amt: outamt,
+                o_cat: temp_cat,
+                o_rec_date: recordDate,
+                o_remark: outremarks
+            },
+            success: function (result) {
+                var response = JSON.parse(result);
+                if (response.status == 1) {
+                    toastr.success('Record Successfully Inserted', "Success");
+                    load_cashflow_data();
+                    $("#form_cashin").trigger('reset');
+                } else {
+                    toastr.error('Record Insertion Failed', "Error");
+                    console.log(response.status)
+                    load_cashflow_data();
                 }
 
             }

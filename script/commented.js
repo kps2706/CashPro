@@ -80,6 +80,8 @@
 
 
 // $(document).ready(function () {
+
+// info this is for sweetalerts
 //     var Toast = Swal.mixin({
 //         toast: false,
 //         position: 'top-end',

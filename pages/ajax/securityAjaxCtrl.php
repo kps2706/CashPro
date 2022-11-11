@@ -145,24 +145,7 @@ if ($request_type == 'infoLoad') {
     }
 }
 
-if ($request_type == 'cashcatload') {
-    $cnt = 0;
-    $select = $pdo->prepare("SELECT distinct(cash_flow_cat) FROM tbl_cashflow");
 
-    $select->execute();
-
-    while ($row = $select->fetch(pdo::FETCH_OBJ)) {
-        if ($cnt == 0) {
-            $output =   "<option value='" . $row->cash_flow_cat . "' selected='selected'>" . $row->cash_flow_cat . "</option>";
-        } else {
-            $output .=   "<option value='" . $row->cash_flow_cat . "'>" . $row->cash_flow_cat . "</option>";
-        }
-        $cnt = $cnt + 1;
-    }
-    $output .=   "<option value='others'>Others</option>";
-
-    $response['cash_flow_cat'] = $output;
-}
 
 
 echo json_encode($response);
