@@ -131,8 +131,8 @@ error_reporting(E_ERROR | E_PARSE);
 
 
                                             <div class="form-group">
-                                                <button type="submit" class="form-control btn btn-primary"
-                                                    name="btn_inflow" id="btn_inflow" value="submit">Submit</button>
+                                                <button type="submit" class="btn btn-primary" name="btn_inflow"
+                                                    id="btn_inflow" value="submit">Submit</button>
                                             </div>
 
 
@@ -198,8 +198,8 @@ error_reporting(E_ERROR | E_PARSE);
                                             </div>
 
                                             <div class="form-group">
-                                                <button type="submit" class="form-control btn btn-primary"
-                                                    name="btn_outflow" id="btn_outflow" value="submit">Submit</button>
+                                                <button type="submit" class="btn btn-primary" name="btn_outflow"
+                                                    id="btn_outflow" value="submit">Submit</button>
                                             </div>
 
 
@@ -229,3 +229,5 @@ error_reporting(E_ERROR | E_PARSE);
         <!-- </div> -->
 
     </div>
+
+</div>
