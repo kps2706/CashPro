@@ -2,8 +2,6 @@
 1. create cron job to automatically update cmp from bhavcopy.
 2. 
 
-
-
 1. Password reset functionality with activation link on mail.
 2. User ip address should automatically fetched.
 3. Password lock functionality after 3 invalid attempt with colling period of 2 hours.

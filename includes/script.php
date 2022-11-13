@@ -37,6 +37,9 @@
      <!-- Datatable -->
      <script src="dist/js/jquery.dataTables.min.js"></script>
 
+     <!-- Bootstrap Switch -->
+     <script src="plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
      <!-- My Script file -->
      <script src="script/myscript.js"></script>
      <script src="pages/ajax/myajaxscript.js"></script>

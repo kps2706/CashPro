@@ -215,14 +215,19 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
 
+
                     <div class="col-sm-12 col-lg-8">
                         <div id='tableContainer'>
 
-
+                            <!-- //info Record Table added here by Ajax -->
                         </div>
 
                     </div>
                     <!-- /.card-body-->
+
+
+
+
                 </div>
             </div>
         </div>

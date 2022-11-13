@@ -10,6 +10,10 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    $("input[data-bootstrap-switch]").each(function () {
+        $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+
     $("#btn_submit").click(function () {
         // alert($("#exampleInputEmail1").val());
 

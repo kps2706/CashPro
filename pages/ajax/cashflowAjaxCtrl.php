@@ -24,6 +24,7 @@ if ($request_type == 'loadcashtable') {
             <th style='width: 40%'>Particulars</th>
             <th>Amount</th>
             <th>Category</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>";
@@ -34,6 +35,20 @@ if ($request_type == 'loadcashtable') {
                     <td>" . $row['cash_flow_cat'] . "</td>
                     <td>" . $row['cash_flow_amt'] . "</td>
                     <td>" . $row['cash_flow_type'] . "</td>
+
+                    <td>
+                    
+                    <div class='btn-group btn-group-sm'>
+                        <a href='?editID=" . $row['rec_id'] . "' class='btn btn-warning' id='out_rec_edit'><i class='fas fa-edit'></i></a>
+                        <a href='#' class='btn btn-danger'><i class='fas fa-trash'></i></a>
+                    </div>
+                    
+                    
+                    </td>
+
+
+
+
                     </tr>";
     }
 

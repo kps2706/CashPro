@@ -244,13 +244,9 @@ function load_cashflow_data() {
     });
 };
 
-
-// Info CashFlow :: Outflow data insert to DB
-
-
-
 $(document).ready(function () {
 
+    // info Cash outflow record added to Database
     $("#btn_outflow").on("click", function (e) {
         e.preventDefault();
 
@@ -292,6 +288,8 @@ $(document).ready(function () {
 
 
     });
+
+    // info Cash inflow record added to Database
 
 
     $("#btn_inflow").on("click", function (e) {

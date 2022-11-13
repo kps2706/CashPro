@@ -42,16 +42,10 @@
             <h3 class="card-title">Design Segment</h3>
         </div>
         <div class="card-body">
-            <!-- <dl>
-                <dt>Description lists</dt>
-                <dd>A description list is perfect for defining terms.</dd>
-                <dt>Euismod</dt>
-                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                <dt>Malesuada porta</dt>
-                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl> -->
+
             <div class="row">
+
+                <!-- //info Left section with photo -->
                 <div class="col-md-3">
 
                     <!-- Profile Image -->
@@ -87,21 +81,26 @@
 
                 </div>
                 <!-- /.col -->
+
+                <!-- //info Right Section with all details and controlls -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#settings"
-                                        data-toggle="tab">Settings</a>
-                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
+                                        data-toggle="tab">General Details</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#profileSetup" data-toggle="tab">Profile
+                                        Setup</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="#dbSetup" data-toggle="tab">Database
+                                        Setup</a>
                                 </li>
 
-                                </li>
+
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-
                                 <div class="tab-pane active" id="settings">
                                     <form class="form-horizontal">
                                         <div class="form-group row">
@@ -114,9 +113,10 @@
                                             </div>
 
                                             <div class="col-sm-2">
-                                                <div class="btn-group btn-group-sm">
+                                                <div class="btn-group btn-group-md">
                                                     <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-danger"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,103 +161,42 @@
                                 <!-- /.tab-pane -->
 
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="timeline">
+                                <div class="tab-pane" id="profileSetup">
                                     <!-- The timeline -->
-                                    <div class="timeline timeline-inverse">
-                                        <!-- timeline time label -->
-                                        <div class="time-label">
-                                            <span class="bg-danger">
-                                                10 Feb. 2014
-                                            </span>
-                                        </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-envelope bg-primary"></i>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="profileController" class="col-sm-8 col-form-label">Deactive your
+                                                profile<p class="text-muted" style="font-weight:400 !important ;">You
+                                                    can
+                                                    reactivate your profile with 14 days.
+                                                    After 14
+                                                    days your all data will
+                                                    be deleted parmanently.</p></label>
 
-                                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an
-                                                    email</h3>
-
-                                                <div class="timeline-body">
-                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                    quora plaxo ideeli hulu weebly balihoo...
-                                                </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                                </div>
+                                            <div class="col-sm-4">
+                                                <input type="checkbox" name="my-checkbox" data-bootstrap-switch
+                                                    data-off-color="success" data-on-color="danger">
                                             </div>
                                         </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-user bg-info"></i>
+                                        <div class="row">
+                                            <label for="profileController" class="col-sm-8 col-form-label">Change Your
+                                                Password<p class="text-muted" style="font-weight:400 !important ;">You
+                                                    will get a password reset link on your register email address.</p>
+                                            </label>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a>
-                                                    accepted your friend request
-                                                </h3>
+                                            <div class="col-sm-4">
+                                                <input type="checkbox" name="my-checkbox" data-bootstrap-switch
+                                                    data-off-color="success" data-on-color="danger">
                                             </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-comments bg-warning"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your
-                                                    post</h3>
-
-                                                <div class="timeline-body">
-                                                    Take me to your leader!
-                                                    Switzerland is small and neutral!
-                                                    We are more like Germany, ambitious and misunderstood!
-                                                </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline time label -->
-                                        <div class="time-label">
-                                            <span class="bg-success">
-                                                3 Jan. 2014
-                                            </span>
-                                        </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-camera bg-purple"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos
-                                                </h3>
-
-                                                <div class="timeline-body">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <div>
-                                            <i class="far fa-clock bg-gray"></i>
                                         </div>
                                     </div>
+
+                                </div>
+
+                                <div class="tab-pane" id="dbSetup">
+                                    <!-- The timeline -->
+
                                 </div>
                                 <!-- /.tab-pane -->
                             </div>
