@@ -138,6 +138,8 @@ error_reporting(E_ERROR | E_PARSE);
 
 
                                         </form>
+
+
                                     </div>
 
 
@@ -148,7 +150,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         aria-labelledby="Cash_OutFlow-tab">
 
                                         <form class="cash_outflow" id="form_cashout">
-
+                                            <div class="div" id="result" name="result"></div>
 
                                             <div class="form-group">
                                                 <label for="cashout">Cash Outflow</label>

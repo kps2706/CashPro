@@ -273,14 +273,11 @@ $(document).ready(function () {
             },
             success: function (result) {
                 var response = JSON.parse(result);
-                if (response.status == 1) {
-                    toastr.success('Record Successfully Inserted', "Success");
-                    load_cashflow_data();
-                    $("#form_cashout").trigger('reset');
-                } else {
-                    toastr.error('Record Insertion Failed', "Error");
-                    load_cashflow_data();
-                }
+                $("#result").html(response.status);
+
+                load_cashflow_data();
+                $("#form_cashout").trigger('reset');
+
 
             }
         });

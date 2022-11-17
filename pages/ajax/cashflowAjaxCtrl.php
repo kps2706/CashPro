@@ -104,11 +104,23 @@ if ($request_type == 'cashRecordInsert') {
         $insert_sql = $pdo->prepare($sql);
 
         $insert_sql->execute();
-
-        $response['status'] = 1;
+        if ($insert_sql->rowCount() == 1) {
+            $response['status'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> <br> Record ' . $outCat . ' of Rs.' . $outAmt . ' with tran remarks ' . $outRemark . ' inserted successfully.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+        } else {
+            $response['status'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> <br>Query failed to execute.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>';
+        }
     } catch (PDOException $e) {
         //throw $th;
-        $response['status'] = 0;
+
     }
 }
 
