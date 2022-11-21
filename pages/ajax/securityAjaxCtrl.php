@@ -92,52 +92,54 @@ if ($request_type == 'infoLoad') {
 
     try {
         //code...
-        $isin_code = $_POST['isin_code'];
+        if (isset($_POST['isin_code'])) {
+            $isin_code = $_POST['isin_code'];
 
-        $select = $pdo->prepare("SELECT * FROM tbl_nse where ISIN_Code='{$isin_code}'");
+            $select = $pdo->prepare("SELECT * FROM tbl_nse where ISIN_Code='{$isin_code}'");
 
-        $select->execute();
+            $select->execute();
 
-        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-            $response['Security_name'] = $row->security_name;
-            $response['Security_symbol'] = $row->symbol;
-            $response['industry'] = $row->industry;
-            $response['market_cap'] = $row->market_cap;
-            $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row->symbol . ".jpg' alt='Security Avatar'>";
+                $response['Security_name'] = $row->security_name;
+                $response['Security_symbol'] = $row->symbol;
+                $response['industry'] = $row->industry;
+                $response['market_cap'] = $row->market_cap;
+                $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row->symbol . ".jpg' alt='Security Avatar'>";
 
-            // <img class="img elevation-2" src="logo/bataindia.jpg" alt="User Avatar">
-        }
+                // <img class="img elevation-2" src="logo/bataindia.jpg" alt="User Avatar">
+            }
 
-        $select = $pdo->prepare("SELECT * FROM tbl_about where ISIN_Code='{$isin_code}'");
+            $select = $pdo->prepare("SELECT * FROM tbl_about where ISIN_Code='{$isin_code}'");
 
-        $select->execute();
+            $select->execute();
 
-        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-            $response['Security_Info'] = $row->about_info;
-        }
+                $response['Security_Info'] = $row->about_info;
+            }
 
-        $select = $pdo->prepare("SELECT MAX(cmp_date) as cmp_date FROM tbl_cmp_price where ISIN_Code='{$isin_code}'");
+            $select = $pdo->prepare("SELECT MAX(cmp_date) as cmp_date FROM tbl_cmp_price where ISIN_Code='{$isin_code}'");
 
-        $select->execute();
+            $select->execute();
 
-        $cmp_date_db = NULL;
+            $cmp_date_db = NULL;
 
-        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-            $cmp_date_db = $row->cmp_date;
-        }
+                $cmp_date_db = $row->cmp_date;
+            }
 
-        $select = $pdo->prepare("SELECT * FROM tbl_cmp_price where ISIN_Code='{$isin_code}' AND cmp_date='{$cmp_date_db}'");
+            $select = $pdo->prepare("SELECT * FROM tbl_cmp_price where ISIN_Code='{$isin_code}' AND cmp_date='{$cmp_date_db}'");
 
-        $select->execute();
+            $select->execute();
 
-        while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
 
-            $response['Security_Cmp'] = $row->cmp_close_price;
-            $cmp_date_db = date_format(date_create($cmp_date_db), "d/M/Y");
-            $response['last_update'] = "Updated on : " . $cmp_date_db;
+                $response['Security_Cmp'] = $row->cmp_close_price;
+                $cmp_date_db = date_format(date_create($cmp_date_db), "d/M/Y");
+                $response['last_update'] = "Updated on : " . $cmp_date_db;
+            }
         }
     } catch (PDOException $e) {
         //throw $th;

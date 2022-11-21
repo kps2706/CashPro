@@ -250,35 +250,26 @@ $(document).ready(function () {
     $("#btn_outflow").on("click", function (e) {
         e.preventDefault();
 
-        var outamt = $("#cashout").val();
-        if ($("#out_category_id").val() == "others") {
-            var temp_cat = $("#other_cat_out").val();
-        } else {
-            var temp_cat = $("#out_category_id").val();
-        }
-        var recordDate = $("#outflow_rec_date").val();
-        var outremarks = $("#out_tranremarks").val();
+        var request_data = $("#form_cashout").serialize() + "&requestType=cashRecordInsert&flow_type=outFlow";
 
         $.ajax({
             type: "post",
             url: "pages/ajax/cashflowAjaxCtrl.php",
             data: "data",
-            data: {
-                requestType: 'cashRecordInsert',
-                flow_type: 'outFlow',
-                o_amt: outamt,
-                o_cat: temp_cat,
-                o_rec_date: recordDate,
-                o_remark: outremarks
-            },
+            data: request_data,
+            dataType: "JSON",
             success: function (result) {
-                var response = JSON.parse(result);
-                $("#result").html(response.status);
+                // info this JSON.parse is not required if dataType is given.
+                // var response = JSON.parse(result);
+
+                $("#result_cashout").html(result.status);
+
+                setTimeout(function () {
+                    $("#result_cashout").fadeOut("slow")
+                }, 4000);
 
                 load_cashflow_data();
                 $("#form_cashout").trigger('reset');
-
-
             }
         });
 
@@ -291,39 +282,24 @@ $(document).ready(function () {
 
     $("#btn_inflow").on("click", function (e) {
         e.preventDefault();
-
-        var outamt = $("#cashin").val();
-        if ($("#in_category_id").val() == "others") {
-            var temp_cat = $("#other_cat_in").val();
-        } else {
-            var temp_cat = $("#in_category_id").val();
-        }
-        var recordDate = $("#inflow_rec_date").val();
-        var outremarks = $("#in_tranremarks").val();
+        var request_data = $("#form_cashin").serialize() + "&requestType=cashRecordInsert&flow_type=inFlow";
 
         $.ajax({
             type: "post",
             url: "pages/ajax/cashflowAjaxCtrl.php",
             data: "data",
-            data: {
-                requestType: 'cashRecordInsert',
-                flow_type: 'inFlow',
-                o_amt: outamt,
-                o_cat: temp_cat,
-                o_rec_date: recordDate,
-                o_remark: outremarks
-            },
+            data: request_data,
+            dataType: "JSON",
             success: function (result) {
-                var response = JSON.parse(result);
-                if (response.status == 1) {
-                    toastr.success('Record Successfully Inserted', "Success");
-                    load_cashflow_data();
-                    $("#form_cashin").trigger('reset');
-                } else {
-                    toastr.error('Record Insertion Failed', "Error");
-                    console.log(response.status)
-                    load_cashflow_data();
-                }
+
+                $("#result_cashin").html(result.status);
+
+                setTimeout(function () {
+                    $("#result_cashin").fadeOut("slow")
+                }, 4000);
+
+                load_cashflow_data();
+                $("#form_cashin").trigger('reset');
 
             }
         });
@@ -333,4 +309,41 @@ $(document).ready(function () {
     });
 
 
+});
+
+// Document.ready short hand methoda
+$(function () {
+    // info edit button
+    $(document).on("click", ".btn-edit", function (e) {
+        e.preventDefault();
+        var record_id = $(this).data("id");
+        $("#btn_outflow").removeClass("btn-primary").addClass("btn-warning").html("Save Changes");
+
+    })
+    // info delete button
+    $(document).on("click", ".btn-delete", function (e) {
+        e.preventDefault();
+        if (confirm("Do you really want to delete this record ?")) {
+
+            var record_id = $(this).data("id");
+            // alert(record_id);
+            var element = this;
+            $.ajax({
+                type: "post",
+                url: "pages/ajax/cashflowAjaxCtrl.php",
+                data: {
+                    requestType: 'deleteRecord',
+                    record_id: record_id
+                },
+                dataType: "json",
+                success: function (response) {
+
+                    if (response.deleteStatus) {
+                        $(element).closest("tr").fadeOut();
+                    }
+
+                }
+            });
+        }
+    })
 });

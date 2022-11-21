@@ -11,7 +11,7 @@ $request_type = isset($_POST['requestType']) ? $_POST['requestType'] : '';
 
 if ($request_type == 'loadcashtable') {
 
-    $sql = "SELECT * FROM tbl_cashflow order by 'cash_flow_date' ASC";
+    $sql = "SELECT * FROM tbl_cashflow order by rec_id DESC";
 
     $result = $pdo->query($sql);
 
@@ -20,6 +20,7 @@ if ($request_type == 'loadcashtable') {
     $output = "<table id='table_id' class='table table-sm table-striped'>
     <thead>
         <tr>
+            <th>#</th>
             <th>Date</th>
             <th style='width: 40%'>Particulars</th>
             <th>Amount</th>
@@ -31,24 +32,17 @@ if ($request_type == 'loadcashtable') {
 
     while ($row = $result->fetch(pdo::FETCH_ASSOC)) {
         $output .= "<tr>
+                    <td>" . $row['rec_id'] . "</td>
                     <td>" . $row['cash_flow_date'] . "</tb>
                     <td>" . $row['cash_flow_cat'] . "</td>
                     <td>" . $row['cash_flow_amt'] . "</td>
                     <td>" . $row['cash_flow_type'] . "</td>
-
                     <td>
-                    
                     <div class='btn-group btn-group-sm'>
-                        <a href='?editID=" . $row['rec_id'] . "' class='btn btn-warning' id='out_rec_edit'><i class='fas fa-edit'></i></a>
-                        <a href='#' class='btn btn-danger'><i class='fas fa-trash'></i></a>
+                        <a href='#' data-id=" . $row['rec_id'] . " class='btn btn-warning btn-edit' ><i class='fas fa-edit'></i></a>
+                        <a href='#' data-id=" . $row['rec_id'] . " class='btn btn-danger btn-delete'><i class='fas fa-trash'></i></a>
                     </div>
-                    
-                    
                     </td>
-
-
-
-
                     </tr>";
     }
 
@@ -57,12 +51,14 @@ if ($request_type == 'loadcashtable') {
 
     $response['cashflow_table'] = $output;
 }
+
+
 // info Cash Out Flow Category Load
 if ($request_type == 'cashcatload') {
 
     $requestedData = $_POST['dataType'];
     $cnt = 0;
-    $select = $pdo->prepare("SELECT distinct(cash_flow_cat) FROM tbl_cashflow WHERE cash_flow_type='" . $requestedData . "'");
+    $select = $pdo->prepare("SELECT distinct(cash_flow_cat) FROM tbl_cashflow WHERE cash_flow_type='" . $requestedData . "' ORDER BY cash_flow_cat");
 
     $select->execute();
 
@@ -89,15 +85,23 @@ if ($request_type == 'cashRecordInsert') {
 
         $flowType = $_POST['flow_type'];
 
-        $outAmt = $_POST['o_amt'];
-        $outCat = $_POST['o_cat'];
-        $outRemark = $_POST['o_remark'];
-        $recordDate = date("Y-m-d", strtotime($_POST['o_rec_date']));
+
         if ($flowType == 'outFlow') {
             # code...
-            $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('OutFlow','{$outAmt}','{$outCat}','{$recordDate}','{$outRemark}')";
+            $Amt = $_POST['cashout'];
+            $Cat = ($_POST['out_category_id'] == "others") ? $_POST['other_cat_out'] : $_POST['out_category_id'];
+            $Remark = $_POST['out_tranremarks'];
+            $recordDate = date("Y-m-d", strtotime($_POST['outflow_rec_date']));
+
+            $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('OutFlow','{$Amt}','{$Cat}','{$recordDate}','{$Remark}')";
         } elseif ($flowType == 'inFlow') {
-            $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('inFlow','{$outAmt}','{$outCat}','{$recordDate}','{$outRemark}')";
+
+            $Amt = $_POST['cashin'];
+            $Cat = ($_POST['in_category_id'] == "others") ? $_POST['other_cat_in'] : $_POST['in_category_id'];
+            $Remark = $_POST['in_tranremarks'];
+            $recordDate = date("Y-m-d", strtotime($_POST['inflow_rec_date']));
+
+            $sql = "INSERT INTO tbl_cashflow(cash_flow_type, cash_flow_amt, cash_flow_cat, cash_flow_date,cash_flow_remarks) VALUES ('inFlow','{$Amt}','{$Cat}','{$recordDate}','{$Remark}')";
         }
 
 
@@ -121,6 +125,23 @@ if ($request_type == 'cashRecordInsert') {
     } catch (PDOException $e) {
         //throw $th;
 
+    }
+}
+
+//info record delete coding
+
+if ($request_type == 'deleteRecord') {
+
+    $record_id = $_POST['record_id'];
+
+    $sql = $pdo->prepare("DELETE FROM tbl_cashflow WHERE rec_id = :record_ref");
+
+    $sql->execute(array("record_ref" => $record_id));
+
+    if ($sql->rowCount() > 0) {
+        $response['deleteStatus'] = TRUE;
+    } else {
+        $response['deleteStatus'] = FALSE;
     }
 }
 
