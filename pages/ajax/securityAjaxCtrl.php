@@ -99,13 +99,13 @@ if ($request_type == 'infoLoad') {
 
             $select->execute();
 
-            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_ASSOC)) {
 
-                $response['Security_name'] = $row->security_name;
-                $response['Security_symbol'] = $row->symbol;
-                $response['industry'] = $row->industry;
-                $response['market_cap'] = $row->market_cap;
-                $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row->symbol . ".jpg' alt='Security Avatar'>";
+                $response['Security_name'] = $row['security_name'];
+                $response['Security_symbol'] = $row['symbol'];
+                $response['industry'] = $row['industry'];
+                $response['market_cap'] = $row['market_cap'];
+                $response['security_logo'] = "<img class='img mySecLogo' src='logo/" .  $row['symbol'] . ".jpg' alt='Security Avatar'>";
 
                 // <img class="img elevation-2" src="logo/bataindia.jpg" alt="User Avatar">
             }
@@ -114,9 +114,9 @@ if ($request_type == 'infoLoad') {
 
             $select->execute();
 
-            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_ASSOC)) {
 
-                $response['Security_Info'] = $row->about_info;
+                $response['Security_Info'] = $row['about_info'];
             }
 
             $select = $pdo->prepare("SELECT MAX(cmp_date) as cmp_date FROM tbl_cmp_price where ISIN_Code='{$isin_code}'");
@@ -125,19 +125,24 @@ if ($request_type == 'infoLoad') {
 
             $cmp_date_db = NULL;
 
-            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_ASSOC)) {
 
-                $cmp_date_db = $row->cmp_date;
+                $cmp_date_db = $row['cmp_date'];
             }
 
             $select = $pdo->prepare("SELECT * FROM tbl_cmp_price where ISIN_Code='{$isin_code}' AND cmp_date='{$cmp_date_db}'");
 
             $select->execute();
 
-            while ($row = $select->fetch(pdo::FETCH_OBJ)) {
+            while ($row = $select->fetch(pdo::FETCH_ASSOC)) {
 
-                $response['Security_Cmp'] = $row->cmp_close_price;
-                $cmp_date_db = date_format(date_create($cmp_date_db), "d/M/Y");
+                $response['Security_Cmp'] = $row['cmp_close_price'];
+                // echo $cmp_date_db;
+
+                $cmp_date_db = date_format(date_create($cmp_date_db), "d-M-Y");
+
+                //echo $cmp_date_db;
+
                 $response['last_update'] = "Updated on : " . $cmp_date_db;
             }
         }
